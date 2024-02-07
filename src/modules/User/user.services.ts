@@ -6,6 +6,7 @@ import { NotFoundError, UnauthorizedError } from "../../utils/errors";
 import { UserItem } from "../../database/models/user.models";
 import { Password } from "../../utils/password";
 import { generateToken } from "../../utils/token";
+import { Transaction } from "../../database/models/user.models";
 
 // 1. The user can register an account with their email and password
 export const registerUser = async (
@@ -42,7 +43,32 @@ export const loginUser = async (
 };
 
 // 3. The logged in user can deposit money into their account (account record) associated with their user record
-
+export const depositMoney = async (
+    userId: string,
+    amount: number,
+): Promise<Transaction> => {
+    const transaction = await UserModel.depositMoney(userId, amount);
+    return transaction;
+};
 // 4. The logged in user can buy a product with the money in their account (account record)
+export const buyProduct = async (
+    userId: string,
+    productId: string,
+    quantity: number,
+) => {
+    const order = await UserModel.buyProduct(userId, productId, quantity);
+    return order;
+};
 
 // 5. The logged in user can reset their deposit = 0 [for testing purposes]
+export const resetDeposit = async (userId: string) => {
+    const transaction = await UserModel.resetAccount(userId);
+    return transaction;
+};
+
+// Additions
+// 1. The logged in user can view their account balance
+export const getUserAccount = async (userId: string) => {
+    const account = await UserModel.getUserAccount(userId);
+    return account;
+};

@@ -10,6 +10,7 @@ import { welcomeAPI } from "./utils/shared-routes";
 import rateLimit from "express-rate-limit";
 import { limiterConfig } from "./utils/rate-limiter_config";
 import userRoutes from "./modules/User/user.routes";
+import productRoutes from "./modules/Product/product.routes";
 
 // allow dependency injection
 export const createExpressApp = (): Express => {
@@ -25,6 +26,7 @@ export const createExpressApp = (): Express => {
     app.use(rateLimit(limiterConfig));
     app.get("/", welcomeAPI);
     app.use(`${API_URL}/users`, userRoutes);
+    app.use(`${API_URL}/products`, productRoutes);
 
     // the routes goes here
     app.use(handle404Error);

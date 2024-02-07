@@ -22,7 +22,7 @@ Here is a very simple design to the project, with very minmal set of features (M
 Notes: The design is very abstract and doesn't show the details like: `AddProduct`, .. etc but it's obvious as it's CRUD!
 
 ## Installation
-The project is written in go, even though you don't need to have go installed.
+The project is written in ~~go~~ Typescript (coz I don't have time for that), even though you don't need to have go installed.
 
 Running on development:
 - `docker-compose -f docker-compose.dev.yml up -d --build && docker-compose -f docker-compose.dev.yml logs -f`
@@ -31,6 +31,8 @@ Running on Production:
 - `docker-compose.prod.yml : docker-compose -f docker-compose.prod.yml --env-file .prod.env up -d --build`
 
 ## Documentations
+
+The API documentation link can be found [here](https://documenter.getpostman.com/view/20745767/2s9Yyy9eLu)
 
 ## Q/A
 
@@ -44,6 +46,23 @@ Running on Production:
 
     A: Maybe resetting the deposit means withdrawing money, but this doesn't suit the vending machine. For now I will simply reset the deposit of the user for testing purposes only!
 
+<b>Takes on the requirements:</b>
+I don't quite understand why there is `/rest` and this affects how `/buy` and `/deposit` will work, for now I just m
+
+- Users have accounts to buy, while also sellers have the same accounts why can't sellers buy ?
+- Restting the deposit set `deposit = 0`
+
+## Notes
+While you may find some missing features, I left it on purposes as I think it would be really tedious to complete for such a simple project + I don't have time for it
+
+- Tests: I have written so many unit test now, if you wonder why there are not tests!
+- I make a production branch and have a live url so you can test the API
+- There are some takes on the design I have but I don't have time to change but we can discuss how to make it better :D
+
 ## TODO
 
-- [ ] Kick start: setup server, docker and database.
+- [X] Kick start: setup server, docker and database.
+- [ ] Refactor code
+- [ ] Write tests
+- [X] Push documentations to postman
+- [ ] Production Setup ?
